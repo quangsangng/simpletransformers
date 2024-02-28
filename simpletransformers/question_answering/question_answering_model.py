@@ -34,6 +34,8 @@ from transformers.optimization import (
 from torch.optim import AdamW
 from transformers.optimization import Adafactor
 from transformers import (
+    PhobertTokenizer,
+    AutoModel,
     AlbertConfig,
     AlbertForQuestionAnswering,
     AlbertTokenizer,
@@ -135,6 +137,7 @@ class QuestionAnsweringModel:
             "auto": (AutoConfig, AutoModelForQuestionAnswering, AutoTokenizer),
             "bart": (BartConfig, BartForQuestionAnswering, BartTokenizer),
             "bert": (BertConfig, BertForQuestionAnswering, BertTokenizer),
+            "phobert": (    RobertaConfig, RobertaForQuestionAnswering, PhobertTokenizer),
             "camembert": (
                 CamembertConfig,
                 CamembertForQuestionAnswering,
@@ -1172,6 +1175,7 @@ class QuestionAnsweringModel:
                     "electra",
                     "xlmroberta",
                     "bart",
+                    "phobert",
                 ]:
                     del inputs["token_type_ids"]
 
@@ -1488,6 +1492,7 @@ class QuestionAnsweringModel:
                 "electra",
                 "xlmroberta",
                 "bart",
+                "phobert",
             ]:
                 del inputs["token_type_ids"]
             if self.args.model_type not in ["xlnet", "xlm"]:
@@ -1513,6 +1518,7 @@ class QuestionAnsweringModel:
                 "electra",
                 "xlmroberta",
                 "bart",
+                "phobert",
             ]:
                 del inputs["token_type_ids"]
 
